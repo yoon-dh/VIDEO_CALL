@@ -13,15 +13,10 @@ async function getCameras() {
   try {
     const devices = await navigator.mediaDevices.enumerateDevices();
     const cameras = devices.filter((device) => device.kind === "videoinput");
-    const currentCamera = myStream.getVideoTracks()[0];
-
     cameras.forEach((camera) => {
       const option = document.createElement("option");
       option.value = camera.deviceId;
       option.innerText = camera.label;
-      if (currentCamera.label === camera.label) {
-        option.selected = true;
-      }
       camerasSelect.appendChild(option);
     });
   } catch (e) {
@@ -39,14 +34,12 @@ async function getMedia(deviceId) {
     video: { deviceId: { exact: deviceId } },
   };
   try {
-    myStream = await navigator.mediaDevices.getUserMedia(
-      deviceId ? cameraConstraints : initialConstraints // 삼항 조건 연산자 위치 수정
-    );
+    myStream = await navigator.mediaDevices.getUserMedia({
+      deviceId? cameraConstraints : initialConstraints
+    });
 
     myFace.srcObject = myStream;
-    if (!deviceId) {
-      await getCameras();
-    }
+    await getCameras();
   } catch (e) {
     console.log(e);
   }

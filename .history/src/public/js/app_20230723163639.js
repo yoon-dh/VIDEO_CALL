@@ -19,10 +19,8 @@ async function getCameras() {
       const option = document.createElement("option");
       option.value = camera.deviceId;
       option.innerText = camera.label;
-      if (currentCamera.label === camera.label) {
-        option.selected = true;
-      }
-      camerasSelect.appendChild(option);
+      if (currentCamera.label === camera.label)
+        camerasSelect.appendChild(option);
     });
   } catch (e) {
     console.log(e);
