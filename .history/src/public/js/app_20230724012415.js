@@ -113,22 +113,12 @@ welcomeForm.addEventListener("submit", handleWelcomeSubmit);
 
 // socket Code
 
-socket.on("welcome", async () => {
-  const offer = await myPeerConnection.createOffer();
-  myPeerConnection.setLocalDescription(offer);
-  console.log("sent the offer");
-  socket.emit("offer", offer, roomName);
-});
-
-socket.on("offer", (offer) => {
-  console.log(offer);
+socket.on("welcome", () => {
+  console.log("someone joined");
 });
 
 // RTC Code
 
 function makeConnection() {
-  myPeerConnection = new RTCPeerConnection();
-  myStream
-    .getTracks()
-    .forEach((track) => myPeerConnection.addTrack(track, myStream));
+  const peerConnection = new RTCPeerConnection();
 }
