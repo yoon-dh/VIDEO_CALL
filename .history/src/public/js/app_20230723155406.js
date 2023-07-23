@@ -13,12 +13,7 @@ async function getCameras() {
   try {
     const devices = await navigator.mediaDevices.enumerateDevices();
     const cameras = devices.filter((device) => device.kind === "videoinput");
-    cameras.forEach((camera) => {
-      const option = document.createElement("option");
-      option.value = camera.deviceId;
-      option.innerText = camera.label;
-      camerasSelect.appendChild(option);
-    });
+    console.log(cameras);
   } catch (e) {
     console.log(e);
   }
