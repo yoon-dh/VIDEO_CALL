@@ -109,8 +109,9 @@ function handleWelcomeSubmit(event) {
 
 welcomeForm.addEventListener("submit", handleWelcomeSubmit);
 
-// socket Code
+
+// socket Code 
 
 socket.on("welcome", () => {
-  console.log("someone joined");
-});
+  console.log(someone joined)
+})

@@ -17,10 +17,8 @@ const httpServer = http.createServer(app);
 // const wss = new WebSocket.Server({ server });
 const wsServer = new Server(httpServer);
 wsServer.on("connection", (socket) => {
-  socket.on("join_room", (roomName, done) => {
+  socket.on("join_room", (roomName) => {
     socket.join(roomName);
-    done();
-    socket.to(roomName).emit("welcome");
   });
 });
 

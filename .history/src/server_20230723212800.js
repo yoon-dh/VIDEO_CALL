@@ -17,10 +17,10 @@ const httpServer = http.createServer(app);
 // const wss = new WebSocket.Server({ server });
 const wsServer = new Server(httpServer);
 wsServer.on("connection", (socket) => {
+  console.log("되고있나?");
   socket.on("join_room", (roomName, done) => {
     socket.join(roomName);
     done();
-    socket.to(roomName).emit("welcome");
   });
 });
 
