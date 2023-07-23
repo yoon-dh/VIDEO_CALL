@@ -128,10 +128,6 @@ socket.on("offer", async (offer) => {
   socket.emit("answer", answer, roomName);
 });
 
-socket.on("answer", (answer) => {
-  myPeerConnection.setLocalDescription(answer);
-});
-
 // RTC Code
 
 function makeConnection() {

@@ -125,11 +125,7 @@ socket.on("offer", async (offer) => {
   myPeerConnection.setRemoteDescription(offer);
   const answer = await myPeerConnection.createAnswer();
   myPeerConnection.setLocalDescription(answer);
-  socket.emit("answer", answer, roomName);
-});
-
-socket.on("answer", (answer) => {
-  myPeerConnection.setLocalDescription(answer);
+  socket.emit("answer", answer);
 });
 
 // RTC Code
